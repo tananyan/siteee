@@ -13,7 +13,7 @@ SECRET_KEY = '#33y%f65l96j3xn7j)$(o3o5e8ztga4o7)^y_*aju7kak$17qg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [https://theautonews7.herokuapp.com/]
 
 # Application definition
 
