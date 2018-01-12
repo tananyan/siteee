@@ -1,0 +1,105 @@
+{% extends "MainApp/wrapper.html" %}
+<!--Страница регистрации-->
+{% block content %}
+
+    <form class="form-signin" method="POST">
+    {%  csrf_token %}
+    <!--Выводим все ошибки-->
+        {% if form.non_field_errors  %}
+            {% for error in form.non_field_errors %}
+                <div class="error">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if form.username.errors %}
+            {% for error in form.username.errors %}
+                <div class="error">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if form.password1.errors %}
+            {% for error in form.password1.errors %}
+                <div class="error">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if form.password2.errors %}
+            {% for error in form.password2.errors %}
+                <div class="error">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if form.email.errors %}
+            {% for error in form.email.errors %}
+                <div class="error">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    <!--Сама форма регистрации-->
+         <div style="
+                    font-family:'Calibri Light';
+                    color: #ffffff;
+                    font-size: large;
+                    text-align: center;
+                    ">
+             <h4>Добро пожаловать на сайт, пожалуйста пройдите регистрацию </h4>
+             <div class="s-field row">
+                 <div class="text-wrapper">
+                     <label for="example-text-input" class="col-form-label">Логин</label>
+                     <div style="color:black">
+                         {{ form.username }}
+                     </div>
+                 </div>
+             </div>
+
+             <div class="s-field row">
+                 <div class="text-wrapper">
+                     <label for="example-email-input" class="col-form-label">Email</label>
+                     <div style="color:black">
+                         {{ form.email }}
+                     </div>
+                 </div>
+             </div>
+
+             <div class="s-field row">
+                 <div class="text-wrapper">
+                     <label for="example-password-input" class="col-form-label">Пароль</label>
+                     <div style="color:black">
+                        {{ form.password1 }}
+                     </div>
+                 </div>
+             </div>
+
+             <div class="s-field row">
+                 <div class="text-wrapper">
+                     <label for="example-password-input" class="col-form-label">Повторите пароль</label>
+                     <div style="color:black">
+                        {{ form.password2 }}
+                     </div>
+                 </div>
+             </div>
+
+             <div class="s-field row">
+                 <div class="s-simple-checkbox">
+                     <input type="checkbox" name="agree" id="agree" tabindex="5" data-required="true">
+                     <label for="agree"><span class="checkbox_emulator"></span><span class="label">Я принимаю какое-то пользовательское соглашение</span></label>
+                 </div>
+             </div>
+
+             <button class="btn btn-primary buttonmenu" type="submit">Зарегистрироваться</button>
+             <p></p>
+
+         </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- ШАБЛОН -->
+
+    <meta charset="UTF-8">
+    <title>AUTONEWS</title>
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"type="text/css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- Import Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+
+
+    <style>
+        /* Кнопки меню */
+        a.buttonmenu{
+            font-family:'Calibri';
+            background-color: rgba(0,0,0,0.3);
+            border: inset rgba(255, 255, 255, 0.7);
+        }
+        /* при наведении курсора мышки */
+        a.buttonmenu:hover {
+            font-family:'Calibri';
+            background-color: rgba(0,0,0,0.5);
+            border: solid rgba(0, 111, 255, 0.5);
+        }
+        /* при нажатии */
+        a.buttonmenu:active {
+            font-family:'Calibri';
+            background-color: rgba(0,0,0,0.9);
+            border: inset rgba(255, 255, 255, 0.7);
+        }
+
+        button.buttonmenu{
+            font-family:'Calibri';
+            background-color: rgba(0,0,0,0.3);
+            border: inset rgba(255, 255, 255, 0.7);
+        }
+        /* при наведении курсора мышки */
+        button.buttonmenu:hover {
+            font-family:'Calibri';
+            background-color: rgba(0,0,0,0.5);
+            border: solid rgba(0, 111, 255, 0.5);
+        }
+        /* при нажатии */
+        button.buttonmenu:active {
+            font-family:'Calibri';
+            background-color: rgba(0,0,0,0.9);
+            border: inset rgba(255, 255, 255, 0.7);
+        }
+
+        h1, h2, h3, h4 {
+            font-family:'Calibri Light';
+            color: #ffffff;
+            font-size: 30px;
+        }
+
+        h1:hover, h2:hover, h3:hover, h4:hover {
+            color: rgba(0, 111, 255, 0.5);
+        }
+        .error{
+            font-family:'Calibri Light';
+            color: rgba(255, 1, 1, 0.9);
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+        <div class="jumbotron" style="background-image: url({% static 'MainApp/image/fon2.jpg' %}); background-size: 50% ">
+            <div class="container" style="background-color: rgba(0,0,0,0.3);">
+                <div class="container" style="width: 67%"><h1>{% include "MainApp/includes/some.html" %}</h1></div>
+
+            <!-- Меню -->
+
+                    <form class="form-inline" method="POST">
+                        {%  csrf_token %}
+                        <a href="/admin" class="btn btn-primary buttonmenu"><span class="glyphicon glyphicon-briefcase"></span> Админка </a>
+
+                        <a href="/" class="btn btn-primary buttonmenu"><span class="glyphicon glyphicon-home"></span> Главная страница </a>
+
+                        <a href="/news" class="btn btn-primary buttonmenu"><span class="glyphicon glyphicon-comment"></span> Новости </a>
+
+                        <a href="/contact" class="btn btn-primary buttonmenu"><span class="glyphicon glyphicon-user"></span> Контакты </a>
+
+                    <!-- Логин и пароль + кнопки Вход Регистрация -->
+                        <div class="pull-right">
+                            <ul class="right">
+
+
+                                {% if user.is_authenticated %}
+                                    <li><a href="/logout/" class="btn btn-primary buttonmenu"> Выйти ({{ user.username }})</a></li>
+
+                                {% else %}
+
+                                <!-- Логин
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputText">Логин</label>
+                                        {{ form.username }}
+                                    </div>-->
+
+                                <!-- Пароль
+                                    <div class="form-group">
+                                        <label class="sr-only" for="exampleInputPassword2">Пароль</label>
+                                        {{ form.password }}
+                                    </div>-->
+
+                                <!-- Войти
+                                    <button type="submit" class="btn btn-primary buttonmenu">Войти</button>-->
+                                    <a href="/login" class="btn btn-primary buttonmenu"> Войти </a>
+                                    <a href="/registration" class="btn btn-primary buttonmenu"> Регистрация </a>
+
+                                {% endif %}
+
+                            </ul>
+
+                        </div>
+                    </form>
+
+            </div>
+            <div class="container" style="font-family: 'Century Gothic';
+                                        background-color: rgba(0,0,0,0.50);
+                                        color: white;
+                                        ">
+
+
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="row1">
+            <!--<img src="{% static 'fon1.jpg' %}" class="img-thumbnail">-->
+            <hr>
+            <div style="text-align: center">&copy; Все права защищены 2018
+                <h5>Сайт создан для ДЗ по РИПУ</h5>
+                <h5>ИУ5-54 Тананян Б.К.</h5>
+            </div>
+        </div>
+</body>
+</html>

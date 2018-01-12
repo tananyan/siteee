@@ -1,0 +1,15 @@
+{% extends "MainApp/wrapper.html" %}
+
+{% block content %}
+    {%  for val in values %}
+        <p>
+            <div style="
+                font-family:'Calibri Light';
+                color: #ffffff;
+                font-size: large;
+                text-align: center;
+                ">{{ val }}
+            </div>
+        </p>
+    {% endfor %}
+{% endblock %}

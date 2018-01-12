@@ -1,0 +1,22 @@
+{% extends "MainApp/wrapper.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="jumbotron img-thumbnail" style="background-image: url({% static 'MainApp/image/bugatti-chiron-carbon.jpg' %});
+                                            height: 635px;
+                                            margin-top: 15px;
+                                            background-size: 100%;
+                                            ">
+        <div class="container" style="background-color: rgba(0,0,0,0.3); width: 100% ">
+            <h2 style="
+                font-family: 'Century Gothic';
+                text-align: center;
+                color: rgb(255,255,255);
+                ">Добро пожаловать на наш сайт! У нас самые лучшие и интересные новости из мира автомобилей!
+            </h2>
+        </div>
+    </div>
+
+{% endblock %}

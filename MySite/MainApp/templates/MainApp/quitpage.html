@@ -1,0 +1,22 @@
+{% extends "MainApp/wrapper.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="jumbotron img-thumbnail" style="background-image: url({% static 'MainApp/image/mustangcar.jpg' %});
+                                            height: 575px;
+                                            background-size: 100%;
+                                            margin-top: 15px">
+        <p></p>
+        <div class="container" style="background-color: rgba(0,0,0,0.3); width: 53%">
+            <h2 style="padding-bottom: 15px;
+                font-family: 'Century Gothic';
+                text-align: center;
+                color: rgb(255,255,255);
+                ">Прощайте! Мы с нетерпением ждем Вашего возвращения!
+            </h2>
+        </div>
+    </div>
+
+{% endblock %}
