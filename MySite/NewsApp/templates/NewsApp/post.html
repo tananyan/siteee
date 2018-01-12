@@ -1,0 +1,84 @@
+{% extends "MainApp/wrapper.html" %}
+
+<!-- Страница конктретной новости -->
+{% load static %}
+{% block content %}
+
+    {% for a in atr %}
+
+        <!-- Название -->
+        <h2 class="text-info" style="
+        font-family:'Calibri Light';
+        color: #ffffff;
+        ">{{ a.title }}</h2>
+        <hr>
+
+        <!-- Картинка -->
+        <p>
+            <div class="row">
+                <div class="thumbnail">
+                    <img src="{{MEDIA_URL}}{{a.image }}" alt="...">
+                </div>
+            </div>
+        </p>
+
+        <hr>
+
+        <!-- Сама новость и дата -->
+        <p>
+            <div style="
+            font-family: 'Calibri Light' ;
+            color: #ffffff;
+            text-align: justify;
+        ">{{ a.post|safe|linebreaks }}</div>
+        </p>
+
+        <hr>
+
+        <h5 class="text-info" style="
+        font-family:'Calibri Light';
+        color: #ffffff;
+        text-align: right;
+        "> Опубликовано: {{ a.date|date:"Y-m-d в H:i:s" }}</h5>
+
+        <h2>Комментарии</h2>
+
+        <hr>
+        <div class="container">
+                <div>
+                {% for c in commets %}
+                    <div class="row">
+                        {{ c.comments_author }}: {{ c.comments_text }} {{ c.comments_date|date:"d-m-Y"  }}
+                    </div>
+                {% endfor %}
+                </div>
+        </div>
+
+        <hr>
+        {% if user.is_authenticated %}
+            <form action="/news/addcomment/{{ a.id }}" method="post">
+                {% csrf_token %}
+                <h3>
+                   Текст комментария:
+                </h3>
+
+                <div style="color: black">
+                    {{ form_comments.comments_text }}
+                </div>
+
+                <p></p>
+                <button type="submit" class="btn btn-primary buttonmenu">Отправить</button>
+                <p></p>
+            </form>
+
+        {% else %}
+            <p>Для того чтобы оставлять комментарии авторизуйтесь или зарегистрируйтесь
+                <a href="/login/">Вход</a> или
+                <a href="/registration/">Регистрация</a>
+            </p>
+        {% endif %}
+
+    {% endfor %}
+
+
+{% endblock %}
